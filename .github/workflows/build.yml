@@ -18,6 +18,8 @@ jobs:
         run: |
           cp config/corne.keymap config/corne.keymap.bak
           cp config/corne6.keymap config/corne.keymap
+          cp config/corne.conf config/corne.conf.bak
+          cp config/corne6.conf config/corne.conf
 
       - name: Cache west modules
         uses: actions/cache@v4
