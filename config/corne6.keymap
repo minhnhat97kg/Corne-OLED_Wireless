@@ -48,9 +48,11 @@
     combos {
         compatible = "zmk,combos";
         combo_esc {
-            timeout-ms = <50>;
-            key-positions = <2 16>;  // W + F (unchanged from 5-col)
+            timeout-ms = <150>; // Increased window to allow one after the other
+            key-positions = <19 20>;
             bindings = <&kp ESC>;
+            /* This allows 'slop' in your typing so they don't
+               have to be frame-perfect */
         };
     };
 
