@@ -61,3 +61,60 @@ jobs:
           path: |
             corne6_left_studio.uf2
             corne6_right_studio.uf2
+
+  # 3rd keyboard (corne7) — same 6-col hardware, separate BT name "Corne 6 Alt"
+  build-7col:
+    runs-on: ubuntu-latest
+    container:
+      image: zmkfirmware/zmk-build-arm:stable
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Swap keymap for corne7
+        run: |
+          cp config/corne.keymap config/corne.keymap.bak
+          cp config/corne7.keymap config/corne.keymap
+          cp config/corne.conf config/corne.conf.bak
+          cp config/corne7.conf config/corne.conf
+
+      - name: Cache west modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pip
+            bootloader
+            modules
+            tools
+            zephyr
+            zmk
+          key: ${{ runner.os }}-west-${{ hashFiles('config/west.yml') }}
+
+      - name: Initialize west workspace
+        run: |
+          west init -l config
+          west update
+          west zephyr-export
+
+      - name: Build corne7 left
+        run: |
+          west build -s zmk/app -b nice_nano_v2 -- \
+            -DSHIELD="corne_left" \
+            -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" \
+            -DCONFIG_ZMK_STUDIO=y \
+            -DSNIPPET="studio-rpc-usb-uart"
+          cp build/zephyr/zmk.uf2 corne7_left_studio.uf2
+          west build --pristine -s zmk/app -b nice_nano_v2 -- \
+            -DSHIELD="corne_right" \
+            -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" \
+            -DCONFIG_ZMK_STUDIO=y \
+            -DSNIPPET="studio-rpc-usb-uart"
+          cp build/zephyr/zmk.uf2 corne7_right_studio.uf2
+
+      - name: Upload 7-col firmware
+        uses: actions/upload-artifact@v4
+        with:
+          name: corne7-firmware
+          path: |
+            corne7_left_studio.uf2
+            corne7_right_studio.uf2
