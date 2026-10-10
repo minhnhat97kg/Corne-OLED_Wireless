@@ -93,13 +93,13 @@ Hold the home row keys to activate modifiers:
 ```
 ·   F1   F2   F3   F4   F5     F6   F7   F8   F9  F10  ·
 ·  F11  F12   ·    ·    ·    MUTE VolDn VolUp Prev Next ·
-·  BT0  BT1  BT2  BT3  BT4  Play   ·    ·  GAME BTCLR ·
+·  BT0  BT1  BT2  BT3  BT4  Play BriDn BriUp GAME BTCLR ·
               ·    ·    ·       ·    ·    ·
 ```
 
 - F1–F12 on top two rows (left side)
 - Media controls on right home row: Mute / Vol- / Vol+ / Prev / Next
-- Play/Pause on right bottom
+- Right bottom row: Play/Pause, Brightness Down/Up, Game toggle, Bluetooth clear
 - Bluetooth device select (BT0–BT4) on left bottom
 - `BT_CLR` on right bottom corner (safe — requires Layer 3 to reach)
 
