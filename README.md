@@ -1,10 +1,20 @@
-# Mini Corne — ZMK Keymap Config
+# Corne Wireless — ZMK Keymap Config
 
-Corne split keyboard (5-column, wireless) running ZMK firmware on Nice!Nano v2.
+Three split Corne keyboards running ZMK firmware on Nice!Nano v2. All three use
+the same [keymap](config/corne.keymap), including the gaming layer. The 5-column
+keyboard has no physical keys at the outer positions used by the 6-column boards.
+
+| Device | Columns | Bluetooth name |
+|--------|---------|----------------|
+| Mini Corne | 5 | `Mini Corne` |
+| Corne 6 Big | 6 | `Corne 6 Big` |
+| Corne 6 Pro | 6 | `Corne 6 Pro` |
 
 ## Flash Firmware
 
-Go to **Actions** tab → download the latest build → flash the `.uf2` file to each half.
+One run in **Actions** builds all three devices. Download the 5-column, 6-column,
+and third-keyboard artifacts, then flash the matching left and right `.uf2` files
+to each device. The 5-column artifact also includes `settings_reset.uf2`.
 
 - [Keymap Editor (visual)](https://nickcoutsos.github.io/keymap-editor/)
 
@@ -12,9 +22,8 @@ Go to **Actions** tab → download the latest build → flash the `.uf2` file to
 
 ## Keymap Overview
 
-**Keyboard name (BT):** `Mini Corne`
-**Layers:** 4 (Base, Nav/Num, Symbol, Adjust)
-**Active keys:** 5 columns per hand + 3 thumb keys per side
+**Layers:** 5 (Base, Nav/Num, Symbol, Adjust, Game)
+**Active keys:** 5 or 6 columns per hand + 3 thumb keys per side
 
 ### Home Row Mods (Layer 0)
 
@@ -46,7 +55,7 @@ Hold the home row keys to activate modifiers:
 
 | Keys | Output |
 |------|--------|
-| `W` + `V` | `ESC` |
+| `J` + `K` | `ESC` |
 
 ---
 
@@ -54,14 +63,13 @@ Hold the home row keys to activate modifiers:
 
 ```
 ·   1    2    3    4    5      6    7    8    9    0    ·
-·  TAB  ESC   ·    ·    ·    HOME PgDn PgUp END  DEL   ·
-·   ·    ·    ·    ·    ·      ←    ↓    ↑    →   ·    ·
+·  TAB  ESC   ·    ·    ·     ←    ↓    ↑    →    ·    ·
+·   ·    ·    ·    ·    ·     HOME PgDn PgUp END  DEL   ·
         ____  ____  ____    RET  MO3  BSPC
 ```
 
-- Numbers on left top row
-- Nav cluster (Home/PgDn/PgUp/End/Del) on right home row
-- Arrow keys on right bottom row — mirrors Vim `h j k l`
+- Numbers across the top row
+- Arrow keys on the right home row; Home/PgDn/PgUp/End/Del below them
 
 ---
 
@@ -85,7 +93,7 @@ Hold the home row keys to activate modifiers:
 ```
 ·   F1   F2   F3   F4   F5     F6   F7   F8   F9  F10  ·
 ·  F11  F12   ·    ·    ·    MUTE VolDn VolUp Prev Next ·
-·  BT0  BT1  BT2  BT3  BT4  Play   ·    ·    ·  BTCLR ·
+·  BT0  BT1  BT2  BT3  BT4  Play   ·    ·  GAME BTCLR ·
               ·    ·    ·       ·    ·    ·
 ```
 
@@ -94,3 +102,13 @@ Hold the home row keys to activate modifiers:
 - Play/Pause on right bottom
 - Bluetooth device select (BT0–BT4) on left bottom
 - `BT_CLR` on right bottom corner (safe — requires Layer 3 to reach)
+
+---
+
+## Layer 4 — Game
+
+Hold Nav/Num and Symbol, then tap the right-hand `.` position to enable Game.
+Tap that same position again to return to the normal layout. In Game, the left
+hand's QWERT/ASDFG/ZXCVB keys send letters directly, without home-row mods.
+The left thumbs are **Ctrl**, **Shift**, and **Space**; the other right-hand keys
+keep their normal behavior.

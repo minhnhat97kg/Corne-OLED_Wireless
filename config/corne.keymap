@@ -41,10 +41,10 @@
     keymap {
         compatible = "zmk,keymap";
 
-        // LAYER 0: QWERTY 5 COT
+        // LAYER 0: QWERTY; outer keys exist only on the 6-column boards
         default_layer {
             bindings = <
-    &none       &kp Q       &kp W       &kp E        &kp R        &kp T          &kp Y   &kp U        &kp I        &kp O       &kp P       &none
+    &kp TAB     &kp Q       &kp W       &kp E        &kp R        &kp T          &kp Y   &kp U        &kp I        &kp O       &kp P       &kp SQT
     &none       &hm LGUI A  &hm LALT S  &hm LCTRL D  &hm LSHFT F  &kp G          &kp H   &hm RSHFT J  &hm RCTRL K  &hm RALT L  &hm RGUI SEMI &none
     &none       &kp Z       &kp X       &kp C        &kp V        &kp B          &kp N   &kp M        &kp COMMA    &kp DOT     &kp FSLH    &none
                                          &th ESC TAB  &mo 1        &kp SPACE      &th LCTRL RET &mo 2   &th DEL BSPC
@@ -54,7 +54,7 @@
         // LAYER 1: NAV & NUMBER
         lower_layer {
             bindings = <
-    &none   &kp N1   &kp N2   &kp N3   &kp N4   &kp N5     &kp N6    &kp N7    &kp N8    &kp N9    &kp N0    &none
+    &kp GRAVE &kp N1   &kp N2   &kp N3   &kp N4   &kp N5     &kp N6    &kp N7    &kp N8    &kp N9    &kp N0    &kp DEL
     &none   &kp TAB  &kp ESC  &none    &none    &none      &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT &none     &none
     &none   &none    &none    &none    &none    &none      &kp HOME  &kp PG_DN &kp PG_UP &kp END   &kp DEL   &none
                               &trans   &trans   &trans     &kp RET   &mo 3     &kp BSPC
@@ -64,20 +64,30 @@
         // LAYER 2: SYMBOL
         raise_layer {
             bindings = <
-    &none    &kp EXCL &kp AT   &kp HASH  &kp DLLR  &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &none
+    &kp TILDE &kp EXCL &kp AT   &kp HASH  &kp DLLR  &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &kp PIPE
     &none    &kp SQT  &kp DQT  &kp TILDE &kp GRAVE &none       &kp MINUS &kp EQUAL &kp LBKT        &kp RBKT &kp BSLH &none
     &none    &kp LT   &kp GT   &none     &none     &none       &kp UNDER &kp PLUS  &kp LBRC        &kp RBRC &kp PIPE &none
                                &trans    &mo 3     &trans      &trans    &trans    &trans
             >;
         };
 
-        // LAYER 3: ADJUST (F-Keys, Media, BT)
+        // LAYER 3: ADJUST (F-Keys, Media, BT, gaming toggle)
         adjust_layer {
             bindings = <
-    &none   &kp F1       &kp F2       &kp F3       &kp F4       &kp F5        &kp F6      &kp F7      &kp F8      &kp F9      &kp F10     &none
+    &bt BT_CLR &kp F1       &kp F2       &kp F3       &kp F4       &kp F5        &kp F6      &kp F7      &kp F8      &kp F9      &kp F10     &kp C_PP
     &none   &kp F11      &kp F12      &none        &none        &none         &kp C_MUTE  &kp C_VOL_DN &kp C_VOL_UP &kp C_PREV &kp C_NEXT  &none
-    &none   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4  &kp C_PP    &none       &none       &none       &bt BT_CLR  &none
+    &none   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4  &kp C_PP    &none       &none       &tog 4     &bt BT_CLR  &none
                                       &none        &none        &none         &none       &none       &none
+            >;
+        };
+
+        // LAYER 4: GAME — direct left-hand keys, dedicated Ctrl and Shift thumbs
+        gaming_layer {
+            bindings = <
+    &trans  &trans  &trans  &trans  &trans  &trans     &trans  &trans  &trans  &trans  &trans  &trans
+    &trans  &kp A   &kp S   &kp D   &kp F   &kp G      &trans  &trans  &trans  &trans  &trans  &trans
+    &trans  &trans  &trans  &trans  &trans  &trans     &trans  &trans  &trans  &tog 4  &trans  &trans
+                            &kp LCTRL  &kp LSHFT  &kp SPACE  &trans  &trans  &trans
             >;
         };
     };
